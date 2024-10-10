@@ -47,8 +47,8 @@
   --avatar-border-color: rgb(255, 255, 255, 0.95);
 
   /* Topbar */
-  --topbar-bg: rgb(27, 27, 30, 0.64);
-  --topbar-text-color: var(--text-color);
+  --topbar-bg: rgba(30, 30, 30, 0.8); /* Un poco más claro para el fondo */
+  --topbar-text-color: var(--text-color); /* Mantiene el color de texto actual */
   --search-border-color: rgb(55, 55, 55);
   --search-icon-color: rgb(100, 102, 105);
   --input-focus-border-color: rgb(112, 114, 115);
@@ -96,9 +96,9 @@
   --categories-icon-hover-color: white;
 
   /* Archive */
-  --timeline-node-bg: rgb(150, 152, 156);
-  --timeline-color: rgb(63, 65, 68);
-  --timeline-year-dot-color: var(--timeline-color);
+  --timeline-node-bg: rgba(40, 40, 40, 0.9); /* Fondo más oscuro y menos opaco */
+  --timeline-color: rgb(80, 80, 80); /* Un gris más claro para el texto */
+  --timeline-year-dot-color: var(--timeline-color); /* Asegúrate de que coincidan */
 
   color-scheme: dark;
 
@@ -132,11 +132,11 @@
   #archives li:nth-child(odd) {
     background-image: linear-gradient(
       to left,
-      rgb(26, 26, 30),
-      rgb(39, 39, 45),
-      rgb(39, 39, 45),
-      rgb(39, 39, 45),
-      rgb(26, 26, 30)
+      rgb(30, 30, 30),
+      rgb(44, 44, 44), /* Un gris oscuro que se mezcla mejor con el nuevo fondo */
+      rgb(44, 44, 44),
+      rgb(44, 44, 44),
+      rgb(30, 30, 30)
     );
   }
 
