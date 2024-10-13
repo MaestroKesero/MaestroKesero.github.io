@@ -9,7 +9,7 @@ pin: true
 math: true
 mermaid: true
 image:
-  path: https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/TCP1P_skibidi.png?raw=true
+  path: https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/TCP1P_Skibidi.png?raw=true
   lqip: 
   alt: Logo TCP1P
 comments: true
@@ -159,4 +159,4 @@ Abrimos la imagen y obtenemos la flag.
 
 ### Flag
 
-` TCP1P{S3ems_L1k3_Sk1b1dI_T0il3t_h4s_C0nsUm3d_My_fr13nD_U72Syd6}`
+`TCP1P{S3ems_L1k3_Sk1b1dI_T0il3t_h4s_C0nsUm3d_My_fr13nD_U72Syd6}`
