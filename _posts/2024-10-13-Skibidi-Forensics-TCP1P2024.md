@@ -9,11 +9,10 @@ pin: true
 math: true
 mermaid: true
 image:
-  path: /assets/images/TCP1P_skibidi.png
+  path: https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/TCP1P_skibidi.png?raw=true
   lqip: 
   alt: Logo TCP1P
 ---
-
 
 # Skibidi 
 Nombre del autor: `Suisayy`
@@ -28,26 +27,27 @@ Dificultad: <font color=green>Easy</font>
 
 En este reto nos dan dos archivos:
 
-- `suisei.skibidi` : Contiene los datos encriptados
-- `spec.html` : Contiene la documentación necesaria de la extension .skibidi
+- `suisei.skibidi`: Contiene los datos encriptados
+- `spec.html`: Contiene la documentación necesaria de la extensión .skibidi
+
+Archivos en: https://github.com/MaestroKesero/Writeups-CTFs/tree/main/2024/Forensics/TCP1P2024/Skibidi
 
 ## Analizando el reto
 
-Mirando el archivo `spec.html` podemos observar la documentación del formato .skibidi creado por el autor. En resumen, .skibidi es un formato de imagen custom, para ello convierte una imagen.png a formato .skibid siguiendo el siguiente flujo:
+Mirando el archivo `spec.html` podemos observar la documentación del formato .skibidi creado por el autor. En resumen, .skibidi es un formato de imagen custom, para ello convierte una imagen.png a formato .skibidi siguiendo el siguiente flujo:
 
-1. Primero realiza un proecso de compresión en la cual comprime la imagen original utilizando Zstandrad (zstd) utilizando un nivel de compresión de 0.
+1. Primero realiza un proceso de compresión en la cual comprime la imagen original utilizando Zstand (zstd) utilizando un nivel de compresión de 0.
 
-2. Posteriormente se encripta la información resultante utilizando AES-256-GCM
+2. Posteriormente se encripta la información resultante utilizando AES-256-GCM.
 
-3. A partir de aqui, la cabecera del nuevo formato es creada, la cual contiene con los metadatos en la cabecera como la dimensiones de la imagen, los canales de color utilizados, metodo de compresión, la Key utilizada en el cifrado y por último el IV de dicho cifrado
+3. A partir de aquí, la cabecera del nuevo formato es creada, la cual contiene con los metadatos en la cabecera como las dimensiones de la imagen, los canales de color utilizados, método de compresión, la key utilizada en el cifrado y por último el IV de dicho cifrado
         
-
-Basicamente lo que tenemos que hacer para poder leer la imagen es hacer el proceso inverso. Primero tenemos que desencriptar la imagen.skibidi, posteriormente decomprimir la imagen para obtener la imagen decomprimida y por ultimo visualizarla. ¿Fácil no? Pues vamos a ello.
+Básicamente lo que tenemos que hacer para poder leer la imagen es hacer el proceso inverso. Primero tenemos que desencriptar la imagen.skibidi, posteriormente decomprimir el output del desencriptado para obtener la imagen decomprimida y por último visualizarla. ¿Fácil no? Pues vamos a ello.
 
 
 ## Solución
 
-Antes de comenzar con el desencriptado, vamos a ver los bytes especificos de la cabecera junto a sus parametros, para conocer de forma mas detallada como funciona la header de .skibidi.
+Antes de comenzar con el desencriptado, vamos a ver los bytes específicos de la cabecera junto a sus parámetros, para conocer de forma más detallada cómo funciona la header de .skibidi.
 
     File Structure Overview
 
@@ -69,15 +69,15 @@ Antes de comenzar con el desencriptado, vamos a ver los bytes especificos de la 
     +----------------------+-----------------------+
     
 
-Llegados a este punto, como contamos con la Key del cifrado y con el Vector Inicializado, ya podemos desencriptar el cifrado Aes ¿Cierto? Si y no, me explico.
+Llegados a este punto, como contamos con la key del cifrado y con el vector inicializador, ya podemos desencriptar el cifrado AES, ¿Cierto? Sí y no, me explico.
 
-En concreto el modo GCM (Galois Counter Mode) opera con un parametro mas llamado `tag` la cual es un valor que se genera durante el proceso de cifrado y que se utiliza para autenticar tanto los datos cifrados como los datos adicionales para garantizar la integridad de la información. Dicha `tag` se almacena justo al final del archivo.skibdi, de la siguiente forma.
+En concreto el modo GCM (Galois Counter Mode) opera con un parámetro más llamado `tag` el cual es un valor que se genera durante el proceso de cifrado y que se utiliza para autenticar tanto los datos cifrados como los datos adicionales para garantizar la integridad de la información. Dicha `tag` se almacena justo al final del archivo .skibidi de la siguiente forma y es necesaria a la hora de desencriptar la información.
 
     .skibidi = header + data_encrypted + tag
 
-Ademas, la tag en terminos generales suele ser de 16B para cifrados AES-256
+Además, el tag en términos generales suele ser de 16B para cifrados AES-256
 
-Por tanto tenemos todo desglosado y simplemente tenemos que rescatar dicha información, inicializar el AES y desencriptar la información, aqui el script utilizado.
+Por tanto, tenemos todo desglosado y simplemente tenemos que rescatar dicha información, inicializar el AES y desencriptar la información, aquí el script utilizado.
 
 
 ```python
@@ -128,32 +128,32 @@ def decrypt(key, iv, tag, ciphertext):
 
 get_info()
 ```
--NOTA: Un punto importante es el de utilizar el método `.decrypt_and_verify()` en vez del común `.decrypt()` ya que de este modo podemos verificar que el `tag` obtenido es correcto. Si por el contrario no lo es, arrojaria error por lo cual sabríamos que hemos inicializado el cipher con valores erroneos.
+-Nota: Un punto importante es el de utilizar el método `.decrypt_and_verify()` en vez del común `.decrypt()` ya que de este modo podemos verificar que el `tag` obtenido es correcto. Si por el contrario no lo es, arrojaría error por lo cual sabríamos que hemos inicializado el cipher con valores erróneos.
 
-Listo, ya tenemos la data desencriptada. Si le realizamos un file al `output` resultante, este nos muestra que efectivamente se corresponde con data en formato Zstand
+Listo, ya tenemos la data desencriptada. Si le realizamos un file al `output` resultante, este nos muestra que efectivamente se corresponde con data en formato Zstandard
 
     ┌──(kali㉿kali)-[~]
     └─$ file output
     output: Zstandard compressed data (v0.8+), Dictionary ID: None
 
-Por lo que simplemente tenemos que decomprimir la data resultante. En este punto pensé en continuar con el script e importar la libreria Zstand en python pero esta me daba continuamente errores de que era incapaz de leer correctamente los bytes de size content de la cabecera.
+Por lo que simplemente tenemos que decomprimir la data resultante. En este punto pensé en continuar con el script e importar la librería Zstand en Python, pero esta me daba continuamente errores de que era incapaz de leer correctamente los bytes de size-content de la cabecera.
 
-Entonces, probé directamente con la herramienta `unzstd` pero antes tenemos que añadirle la extension .zst a la data
+Entonces, probé directamente con la herramienta `unzstd` pero antes tenemos que añadirle la extensión .zst a la data
 
     ┌──(kali㉿kali)-[~]
     └─$ unzstd output.zst 
     output.zst         : 33177600 bytes   
 
-Si le tiramos un file a el output de unzstd, nos dira que se corresponde con output:data, por lo que tenemos en bruto la información de la imagen y ahora simplemente tenemos que pasarla a un formato de imagen, yo en este punto elegi .png y aplicando el siguiente comando obtenemos la imagen totalmente legible.
+Si le tiramos un file al output de unzstd, nos dirá que se corresponde con output:data, por lo que tenemos en bruto la información de la imagen y ahora simplemente tenemos que pasarla a un formato de imagen, yo en este punto elegí .png y aplicando el siguiente comando obtenemos la imagen totalmente legible.
 
     ┌──(kali㉿kali)-[~]
     └─$ convert -size 3840:2160 -depth 8 rgba:output2 finalfinal.png
 
-NOTA: Sabemos que es el parametro depth es 8 ya que dicho parametro especifica la cantidad de bits por canal, en este caso con 8 bits representamos todo el rango RGB.
+Nota: Sabemos que es el parámetro depth es 8 ya que dicho parámetro especifica la cantidad de bits por canal, en este caso con 8 bits representamos todo el rango RGB.
 
 Abrimos la imagen y obtenemos la flag.
 
-![Imagen_Final](/assets/images/posts/final_skibidi.png)
+![Imagen_Final](https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/final_skibidi.png?raw=true)
 
 
 ### Flag
