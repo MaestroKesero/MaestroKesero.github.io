@@ -11,7 +11,7 @@ mermaid: true
 image:
   path: https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/TCP1P_Skibidi.png?raw=true
   lqip: 
-  alt: Logo TCP1P
+  alt: 
 comments: true
 ---
 
