@@ -1,6 +1,6 @@
 ---
 title: Skibidi - TCP1P2024
-description: Writeup-CTF reto forense basado en el formato .skibidi
+description: Reto forense basado en el formato .skibidi
 author: kesero
 date: 2024-10-13 16:40:00 +0800
 categories: [Writeups-CTF, Forense]
