@@ -111,7 +111,6 @@ def get_info():
     print(f"Alto: {int(height)}")
     print(f"Canales: {int(channels)}")
 
-
     decrypt(key, iv, tag, ciphertext) 
 
 def decrypt(key, iv, tag, ciphertext):
