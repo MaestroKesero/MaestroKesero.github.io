@@ -1,7 +1,7 @@
 ---
 title: Skibidi - TCP1P2024
 description: Reto forense basado en el formato .skibidi
-author: kesero
+author: Bhaskar Pal
 date: 2024-10-13 16:40:00 +0800
 categories: [Writeups-CTF, Forense]
 tags: [Forense, Data, Headers, Extension]
