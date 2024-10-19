@@ -16,10 +16,10 @@ timezone: Europe/Madrid
 
 title: Kesero # the main title
 
-tagline: Ciberseguirdad, CTFs y tal # it will display as the subtitle
+tagline: Ciberseguridad, CTFs y tal. # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  Ciberseguirdad, CTFs y tal
+  Ciberseguridad, CTFs y tal.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -29,7 +29,7 @@ github:
   username: MaestroKesero # change to your GitHub username
 
 twitter:
-  username: twitter_username # change to your Twitter username
+  username: MaestroKesero # change to your Twitter username
 
 social: 
   # Change to your full name.
@@ -38,11 +38,12 @@ social:
   email: maestrokesero@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
+    - https://twitter.com/MaestroKesero # change to your Twitter homepage
     - https://github.com/MaestroKesero # change to your GitHub homepage
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+     - https://www.linkedin.com/in/carlos-mar%C3%ADn-rodr%C3%ADguez-670766263/
+     - https://www.instagram.com/maestrokesero/
+     - https://beacons.ai/kesero
 
 # Site Verification Settings
 webmaster_verifications:

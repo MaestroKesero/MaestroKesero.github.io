@@ -4,7 +4,7 @@ description: Reto forense basado en el formato .skibidi
 author: kesero
 date: 2024-10-13 16:40:00 +0800
 categories: [Writeups-CTF, Forense]
-tags: [Forense, Data, Headers]
+tags: [Forense, Data, Headers, Extension]
 pin: true
 math: true
 mermaid: true
@@ -29,8 +29,8 @@ Dificultad: <font color=green>Easy</font>
 
 En este reto nos dan dos archivos:
 
-- `suisei.skibidi`: Contiene los datos encriptados
-- `spec.html`: Contiene la documentación necesaria de la extensión .skibidi
+- `suisei.skibidi`: Contiene los datos encriptados.
+- `spec.html`: Contiene la documentación necesaria de la extensión .skibidi.
 
 Archivos en: [https://github.com/MaestroKesero/Writeups-CTFs/tree/main/2024/Forensics/TCP1P2024/Skibidi](https://github.com/MaestroKesero/Writeups-CTFs/tree/main/2024/Forensics/TCP1P2024/Skibidi)
 
@@ -42,7 +42,7 @@ Mirando el archivo `spec.html` podemos observar la documentación del formato .s
 
 2. Posteriormente se encripta la información resultante utilizando AES-256-GCM.
 
-3. A partir de aquí, la cabecera del nuevo formato es creada, la cual contiene con los metadatos en la cabecera como las dimensiones de la imagen, los canales de color utilizados, método de compresión, la key utilizada en el cifrado y por último el IV de dicho cifrado
+3. A partir de aquí, la cabecera del nuevo formato es creada, la cual contiene metadatos como las dimensiones de la imagen, los canales de color utilizados, método de compresión, la clave utilizada en el cifrado y por último el IV de dicho cifrado.
         
 Básicamente lo que tenemos que hacer para poder leer la imagen es hacer el proceso inverso. Primero tenemos que desencriptar la imagen.skibidi, posteriormente decomprimir el output del desencriptado para obtener la imagen decomprimida y por último visualizarla. ¿Fácil no? Pues vamos a ello.
 
@@ -71,16 +71,15 @@ Antes de comenzar con el desencriptado, vamos a ver los bytes específicos de la
     +----------------------+-----------------------+
     
 
-Llegados a este punto, como contamos con la key del cifrado y con el vector inicializador, ya podemos desencriptar el cifrado AES, ¿Cierto? Sí y no, me explico.
+Llegados a este punto, como contamos con la clave del cifrado y con el vector inicializador, ya podemos desencriptar el cifrado AES, ¿Cierto? Sí y no, me explico.
 
 En concreto el modo GCM (Galois Counter Mode) opera con un parámetro más llamado `tag` el cual es un valor que se genera durante el proceso de cifrado y que se utiliza para autenticar tanto los datos cifrados como los datos adicionales para garantizar la integridad de la información. Dicha `tag` se almacena justo al final del archivo .skibidi de la siguiente forma y es necesaria a la hora de desencriptar la información.
 
     .skibidi = header + data_encrypted + tag
 
-Además, el tag en términos generales suele ser de 16B para cifrados AES-256
+Además, el tag en términos generales suele ser de 16B para cifrados AES-256.
 
-Por tanto, tenemos todo desglosado y simplemente tenemos que rescatar dicha información, inicializar el AES y desencriptar la información, aquí el script utilizado.
-
+Por tanto, una vez tenemos todo desglosado, simplemente tenemos que rescatar dichos bytes en concreto, inicializar el AES y desencriptar la información, aquí el script utilizado.
 
 ```python
 from Crypto.Cipher import AES
@@ -120,16 +119,16 @@ def decrypt(key, iv, tag, ciphertext):
     try:
         plaintext = cipher.decrypt_and_verify(ciphertext, tag)
         
-        with open('output2', 'wb') as output_file:
+        with open('output', 'wb') as output_file:
             output_file.write(plaintext)
         print("\nProceso finalizado de correcta")
 
     except ValueError as e:
-        print("Error al desencriptar:", str(e))
+        print("Ha ocurrido un error al desencriptar:", str(e))
 
 get_info()
 ```
--Nota: Un punto importante es el de utilizar el método `.decrypt_and_verify()` en vez del común `.decrypt()` ya que de este modo podemos verificar que el `tag` obtenido es correcto. Si por el contrario no lo es, arrojaría error por lo cual sabríamos que hemos inicializado el cipher con valores erróneos.
+-Nota: Un punto importante es el de utilizar el método `.decrypt_and_verify()` en vez del común `.decrypt()` ya que con este método podemos verificar que el `tag` obtenido es correcto. Si por el contrario no lo es, arrojaría un error por lo cual sabríamos que hemos inicializado el cipher con valores incorrectos.
 
 Listo, ya tenemos la data desencriptada. Si le realizamos un file al `output` resultante, este nos muestra que efectivamente se corresponde con data en formato Zstandard
 
@@ -137,9 +136,9 @@ Listo, ya tenemos la data desencriptada. Si le realizamos un file al `output` re
     └─$ file output
     output: Zstandard compressed data (v0.8+), Dictionary ID: None
 
-Por lo que simplemente tenemos que decomprimir la data resultante. En este punto pensé en continuar con el script e importar la librería Zstand en Python, pero esta me daba continuamente errores de que era incapaz de leer correctamente los bytes de size-content de la cabecera.
+Por lo que simplemente tenemos que decomprimir la data resultante. En este punto pensé en continuar con el script e importar la librería Zstand en Python, pero esta me daba continuamente errores de que era incapaz de leer correctamente los bytes de size-content de la cabecera (Se solucionaba con esta linea dctx.stream_reader(io.BytesIO(compressed_data)) as reader:).
 
-Entonces, probé directamente con la herramienta `unzstd` pero antes tenemos que añadirle la extensión .zst a la data
+Entonces, probé directamente con la herramienta `unzstd` pero antes tenemos que añadirle la extensión .zst a la información obtenida.
 
     ┌──(kali㉿kali)-[~]
     └─$ unzstd output.zst 
@@ -148,7 +147,7 @@ Entonces, probé directamente con la herramienta `unzstd` pero antes tenemos que
 Si le tiramos un file al output de unzstd, nos dirá que se corresponde con output:data, por lo que tenemos en bruto la información de la imagen y ahora simplemente tenemos que pasarla a un formato de imagen, yo en este punto elegí .png y aplicando el siguiente comando obtenemos la imagen totalmente legible.
 
     ┌──(kali㉿kali)-[~]
-    └─$ convert -size 3840:2160 -depth 8 rgba:output2 finalfinal.png
+    └─$ convert -size 3840:2160 -depth 8 rgba:output final.png
 
 Nota: Sabemos que es el parámetro depth es 8 ya que dicho parámetro especifica la cantidad de bits por canal, en este caso con 8 bits representamos todo el rango RGB.
 
