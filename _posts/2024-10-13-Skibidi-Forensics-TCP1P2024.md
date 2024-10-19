@@ -15,8 +15,7 @@ image:
 comments: true
 ---
 
-# Skibidi 
-Nombre del autor: `Suisayy`
+Autor del reto: `Suisayy`
 
 Dificultad: <font color=green>Easy</font>
 
