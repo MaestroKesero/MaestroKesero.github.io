@@ -14,7 +14,6 @@ image:
   alt: 
 comments: true
 ---
-
 Autor del reto: `Suisayy`
 
 Dificultad: <font color=green>Easy</font>
