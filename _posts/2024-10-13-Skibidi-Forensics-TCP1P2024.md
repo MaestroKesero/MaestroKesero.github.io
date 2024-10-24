@@ -4,7 +4,7 @@ author: Kesero
 description: Reto forense basado en el formato .skibidi
 date: 2024-10-13 16:40:00 +0800
 categories: [Writeups Competiciones Internacionales, Forense]
-tags: [Forense, Data, Headers, Extension]
+tags: [Forense, Data, Headers, Extension, Writeups]
 pin: false
 math: true
 mermaid: true

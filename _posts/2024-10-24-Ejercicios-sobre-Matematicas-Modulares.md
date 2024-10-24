@@ -4,7 +4,7 @@ author: Kesero
 description: Relacion de ejercicios para comenzar con las matemáticas modulares.
 date: 2024-10-24 18:40:00 +0800
 categories: [Criptografía, Relaciones de Ejercicios]
-tags: [Criptografía, Ejercicios, Matematicas Modulares, Teorema Chino del Resto, Potenciación Modular]
+tags: [Criptografía, Ejercicios, Matematicas Modulares, Teorema Chino del Resto, Potenciación Modular, Congruencias, Sistema de Ecuaciones]
 pin: false
 math: true
 mermaid: true
@@ -22,9 +22,9 @@ En este apartado, os dejaré una serie de ejercicios relacionados con las matem�
 
 ## Relación de Ejercicios
 
-<iframe src="https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" width="100%" height="600px"></iframe>
+<iframe src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" width="100%" height="600px"></iframe>
 
 
 ## Ejercicios Resueltos
 
-<iframe src="https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf" width="100%" height="600px"></iframe>
+<iframe src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf" width="100%" height="600px"></iframe>
