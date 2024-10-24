@@ -3,7 +3,7 @@ title: Skibidi - TCP1P2024
 author: Kesero
 description: Reto forense basado en el formato .skibidi
 date: 2024-10-13 16:40:00 +0800
-categories: [Writeups-CTF, Forense]
+categories: [Writeups Competiciones Internacionales, Forense]
 tags: [Forense, Data, Headers, Extension]
 pin: false
 math: true
@@ -30,7 +30,7 @@ En este reto nos dan dos archivos:
 - `suisei.skibidi`: Contiene los datos encriptados.
 - `spec.html`: Contiene la documentación necesaria de la extensión .skibidi.
 
-Archivos en: [https://github.com/MaestroKesero/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi](https://github.com/MaestroKesero/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi)
+Archivos en: [https://github.com/MaestroKesero/Blog_Content/tree/main/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi](https://github.com/MaestroKesero/Blog_Content/tree/main/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi)
 
 ## Analizando el reto
 
