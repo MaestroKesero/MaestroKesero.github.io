@@ -22,13 +22,20 @@ En este apartado, os dejaré una serie de ejercicios relacionados con las matem�
 
 ## Relación de Ejercicios
 
-<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" width="100%" height="850px"/>
-
-<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" type="application/pdf" />
+![Relacion](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.png?raw=true)
 
 
 ## Ejercicios Resueltos
 
-<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf"  width="100%" height="850px"/>
-
-<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf"  type="application/pdf" />
+[1](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/1.png?raw=true)
+[2](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/2.png?raw=true)
+[3](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/3.png?raw=true)
+[4](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/4.png?raw=true)
+[5](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/5.png?raw=true)
+[6](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/6.png?raw=true)
+[7](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/7.png?raw=true)
+[8](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/8.png?raw=true)
+[9](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/9.png?raw=true)
+[10](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/10.png?raw=true)
+[11](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/11.png?raw=true)
+[12](https://github.com/MaestroKesero/Blog_Content/blob/main/Criptografia/Relaciones_Ejercicios/lista1/12.png?raw=true)
