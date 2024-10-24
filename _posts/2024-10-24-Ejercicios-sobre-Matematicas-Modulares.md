@@ -17,7 +17,9 @@ comments: true
 
 ## Introdución
 
-En este apartado, os dejaré una serie de ejercicios relacionados con las matemáticas modulares. Esta colección de ejercicios tiene como objetivo proporcionar una introducción a las matemáticas modulares, permitiéndonos familiarizarnos con sus conceptos y aplicarlos con soltura. Además, contaréis con las soluciones a los ejercicios para que podáis observar su resolución y comprender mejor los métodos empleados.
+Las matemáticas modulares son una parte fundamental de la teoría de números y tienen aplicaciones en criptografía, computación y demás áreas de la informática. A continuación, se presentan una serie de ejercicios que ayudarán a familiarizarte con los conceptos básicos de las matemáticas modulares.
+
+Esta colección de ejercicios tiene como objetivo proporcionar una introducción a las matemáticas modulares, permitiéndonos familiarizarnos con sus conceptos y aplicarlos con soltura. Además, contaréis con las soluciones a los ejercicios para que podáis observar su resolución y comprender mejor los métodos empleados.
 
 
 ## Relación de Ejercicios
