@@ -9,7 +9,7 @@ pin: false
 math: true
 mermaid: true
 image:
-  path: https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/TCP1P_Skibidi.png?raw=true
+  path: https://github.com/MaestroKesero/Blog_Content/blob/main/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi/TCP1P_Skibidi.png?raw=true
   lqip: 
   alt: 
 comments: true
@@ -30,7 +30,7 @@ En este reto nos dan dos archivos:
 - `suisei.skibidi`: Contiene los datos encriptados.
 - `spec.html`: Contiene la documentación necesaria de la extensión .skibidi.
 
-Archivos en: [https://github.com/MaestroKesero/Writeups-CTFs/tree/main/2024/Forensics/TCP1P2024/Skibidi](https://github.com/MaestroKesero/Writeups-CTFs/tree/main/2024/Forensics/TCP1P2024/Skibidi)
+Archivos en: [https://github.com/MaestroKesero/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi](https://github.com/MaestroKesero/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi)
 
 ## Analizando el reto
 
@@ -130,7 +130,7 @@ get_info()
 
 Listo, ya tenemos la data desencriptada. Si le realizamos un file al `output` resultante, este nos muestra que efectivamente se corresponde con data en formato Zstandard
 
-    ┌──(kali㉿kali)-[~]
+    ┌──(kesero㉿kali)-[~]
     └─$ file output
     output: Zstandard compressed data (v0.8+), Dictionary ID: None
 
@@ -138,20 +138,20 @@ Por lo que simplemente tenemos que decomprimir la data resultante. En este punto
 
 Entonces, probé directamente con la herramienta `unzstd` pero antes tenemos que añadirle la extensión .zst a la información obtenida.
 
-    ┌──(kali㉿kali)-[~]
+    ┌──(kesero㉿kali)-[~]
     └─$ unzstd output.zst 
     output.zst         : 33177600 bytes   
 
 Si le tiramos un file al output de unzstd, nos dirá que se corresponde con output:data, por lo que tenemos en bruto la información de la imagen y ahora simplemente tenemos que pasarla a un formato de imagen, yo en este punto elegí .png y aplicando el siguiente comando obtenemos la imagen totalmente legible.
 
-    ┌──(kali㉿kali)-[~]
+    ┌──(kesero㉿kali)-[~]
     └─$ convert -size 3840:2160 -depth 8 rgba:output final.png
 
 Nota: Sabemos que es el parámetro depth es 8 ya que dicho parámetro especifica la cantidad de bits por canal, en este caso con 8 bits representamos todo el rango RGB.
 
 Abrimos la imagen y obtenemos la flag.
 
-![Imagen_Final](https://github.com/MaestroKesero/Writeups-CTFs/blob/main/2024/Forensics/TCP1P2024/Skibidi/final_skibidi.png?raw=true)
+![Imagen_Final](https://github.com/MaestroKesero/Blog_Content/blob/main/Competiciones_Internacionales_Writeups/2024/Forensics/TCP1P2024/Skibidi/final_skibidi.png?raw=true)
 
 
 ### Flag
