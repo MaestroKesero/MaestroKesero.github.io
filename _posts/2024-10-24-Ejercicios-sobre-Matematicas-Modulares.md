@@ -22,9 +22,13 @@ En este apartado, os dejaré una serie de ejercicios relacionados con las matem�
 
 ## Relación de Ejercicios
 
-<iframe src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" width="100%" height="600px"></iframe>
+<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" width="100%" height="850px"/>
+
+<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/PrimeraLista.pdf" type="application/pdf" />
 
 
 ## Ejercicios Resueltos
 
-<iframe src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf" width="100%" height="600px"></iframe>
+<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf"  width="100%" height="850px"/>
+
+<embed src="https://raw.githubusercontent.com/MaestroKesero/Blog_Content/main/Criptografia/Relaciones_Ejercicios/lista1/Relacion%20de%20ejercicios.pdf"  type="application/pdf" />
